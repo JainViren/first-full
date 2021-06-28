@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PASRVMV</title>
+</head>
+
+
+
+<!-- css  -->
+<style>
+body
+{
+margin: 0px;
+}
+a.nav
+{
+    text-decoration: none;
+    color:white;
+    text-size:50px;
+}
+a.nav:hover
+{
+    color:blue;
+    text-decoration: underline;
+    
+}
+.nav
+{
+    width:100%;
+    display: flex;
+    height:70px;
+    align-items: center;
+    font-size: 24px;
+    align-content: center;
+    flex-direction:row;
+    margin-bottom:0px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: rgb(160, 160, 160);
+  background-repeat: no-repeat;
+}
+
+.nav#logo_nav
+{
+    display:flexbox;
+    width:70px;
+    height:70px;
+    flex-direction: row;
+    padding-left:12px;
+    padding-right:12px;
+    border-radius: 50px;
+    
+}
+.nav#home_nav
+{
+    display:flexbox;
+    flex-direction: row;
+    width:80px;
+    padding-left:20px;
+    padding-right:20px;
+   
+    
+}
+.nav#aboutus_nav
+{
+    display:flexbox;
+    flex-direction: row;
+    width:650px;
+    padding-left:20px;
+    padding-right:20px
+
+}
+.nav#services_nav
+{
+    display:flexbox;
+    flex-direction: row;
+    width:130px;
+    padding-left:20px;
+    padding-right:20px
+    
+}
+.nav#contactus_nav
+{
+    display:flexbox;
+    padding-left:20px;
+    padding-right:20px
+    flex-direction: row;
+}
+.HOME
+{
+    
+
+background-image: linear-gradient(90deg,#FF7948,#7C2AE8);
+
+    
+    margin: 0px;
+    height:78vh;
+    align-content: center;
+    text-align: center;
+    padding-top: 80px;
+    overflow: hidden;
+    
+}
+a.typewrite
+{
+    text-decoration: none;
+    color:white;
+    font-size:50px;
+}
+</style>
+
+
+
+
+
+
+
+
+
+<!-- BODY PART -->
+<body>
+    <div class="nav">
+        <img class="nav" id="logo_nav" src="/images/PASRVMV.png" alt="my logo">
+            <a class="nav" id="home_nav" href="index.html">HOME</a>
+            <a class="nav" id="aboutus_nav"href="aboutus.html">ABOUT US</a>
+            <a class="nav" id="services_nav"href="services.html">SERVICES</a>
+            <a class="nav" id="contactus_nav"href="contactus.html">CONTACT US</a>
+            <a class="nav" id="contactus_nav"></a>
+            <a class="nav" id="contactus_nav"></a>
+    </div>
+    <div class="HOME">
+        <h1 class="HOME">
+            <a href="" class="typewrite" data-period="3000" data-type='[ "Welcome to our website", "We want to wish you", "All the best 👍to ", "crack any exam" ]'>
+                <span class="wrap"></span>
+              </a>
+        </h1>
+    </div>
+    
+</body>
+
+
+
+
+
+<!-- script  -->
+<script>
+var TxtType = function(el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = '';
+        this.tick();
+        this.isDeleting = false;
+    };
+
+    TxtType.prototype.tick = function() {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+
+        if (this.isDeleting) {
+        this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+        this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+        var that = this;
+        var delta = 200 - Math.random() * 100;
+
+        if (this.isDeleting) { delta /= 2; }
+
+        if (!this.isDeleting && this.txt === fullTxt) {
+        delta = this.period;
+        this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+        this.isDeleting = false;
+        this.loopNum++;
+        delta = 500;
+        }
+
+        setTimeout(function() {
+        that.tick();
+        }, delta);
+    };
+
+    window.onload = function() {
+        var elements = document.getElementsByClassName('typewrite');
+        for (var i=0; i<elements.length; i++) {
+            var toRotate = elements[i].getAttribute('data-type');
+            var period = elements[i].getAttribute('data-period');
+            if (toRotate) {
+              new TxtType(elements[i], JSON.parse(toRotate), period);
+            }
+        }
+        // INJECT CSS
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+        document.body.appendChild(css);
+    };
+</script>
+
+
+
+
+
+
+
+
+
+</html>
